@@ -1,9 +1,9 @@
 orientation : "landscape"
-out_folder  : "/tmp"
-query       : "people"
+out_folder  : "/Users/jbimbert/Pictures/screenSaver"
+query       : "nature"
 size        : "small"
-src_size    : "Small"
-level       : "debug"
+src_size    : "Landscape"
+level       : "warn"
 page        : 1
-per_page    : 5
+per_page    : 80
 config      : ""

@@ -112,7 +112,7 @@ func download(c *Conf) {
 
 	// Simple closure to build the image title
 	title := func(i int) string {
-		return c.Out_folder + "/" + strings.Join(strings.Split(c.Query, " "), "_") + "_p" + strconv.Itoa(c.Page) + "_" + strconv.Itoa(ids[i])
+		return c.Out_folder + "/" + strings.Join(strings.Split(c.Query, " "), "_") + "_p" + strconv.Itoa(c.Page) + "_" + strconv.Itoa(ids[i]) + ".jpg"
 	}
 
 	// Download the photos in parallel
