@@ -69,5 +69,7 @@ All command line options are optional and have default values. If you use the co
 ## Example
 
 go run main.go parseJson.go request.go checks.go fileutil.go config.go -c config.yml
+
 go run main.go parseJson.go request.go checks.go fileutil.go config.go
+
 go run main.go parseJson.go request.go checks.go fileutil.go config.go -q people -p 2 -n 80 -s Small -z small -f /tmp -l warn
