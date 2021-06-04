@@ -1,0 +1,9 @@
+orientation : "landscape"
+out_folder  : "/tmp"
+query       : "people"
+size        : "small"
+src_size    : "Small"
+level       : "debug"
+page        : 1
+per_page    : 5
+config      : ""
