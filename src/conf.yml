@@ -1,9 +1,31 @@
-orientation : "landscape"
-out_folder  : "/Users/jbimbert/Pictures/screenSaver"
-query       : "nature"
-size        : "small"
-src_size    : "Landscape"
-level       : "warn"
-page        : 1
-per_page    : 80
-config      : ""
+orientation: landscape
+out_folder: /tmp
+query:
+  - nature
+  - people
+  - space
+  - tree
+  - earth
+  - animals
+  - sky
+  - mountain
+  - sunset
+  - clouds
+  - sun
+  - moon
+  - stars
+  - galaxy
+  - planets
+  - abstract
+  - creative
+  - astronomy
+  - beautiful
+  - background
+  - texture
+  - patterns
+size: small
+src_size: Landscape
+level: info
+page: 1
+per_page: 80
+config: ""

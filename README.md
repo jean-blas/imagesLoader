@@ -31,6 +31,8 @@ where options can be:
 
         Query (people, nature, ...) (default "people")
 
+        Array of strings with comma separator (e.g. "people,nature,space")
+
 * -z string
 
         Minimum photo size (large (24MP), medium(12MP), small(4MP)) (default "small")

@@ -31,7 +31,6 @@ var Usage = func() {
 	flag.PrintDefaults()
 }
 
-// TODO read from a list of "query" keywords
 // TODO read more images than the per_page which is limited to 80 (increase automatically the "page")
 
 func main() {
@@ -55,13 +54,14 @@ func main() {
 		c, err = c.parseConf(*conf)
 		logerr(err)
 	} else {
-		c.updateConf(*orientation, *out_folder, *query, *size, *src_size, *level, *conf, *page, *per_page)
+		qry := strings.Split(*query, ",")
+		c.updateConf(*orientation, *out_folder, *size, *src_size, *level, *conf, qry, *page, *per_page)
 	}
 	logerr(c.checkConf())
 
-	loginit(*level)
+	loginit(c.Level)
 
-	download(c)
+	request(c)
 }
 
 // Initialize the log level
@@ -86,10 +86,24 @@ func logerr(err error) {
 	}
 }
 
-// Download some photos according to the options
-func download(c *Conf) {
+// Launch the queries in //
+func request(c *Conf) {
+	var wg sync.WaitGroup
+	wg.Add(len(c.Query))
+	for _, q := range c.Query {
+		go func(q string) {
+			download(c, q)
+			wg.Done()
+		}(q)
+	}
+	wg.Wait()
+}
+
+// Download some photos in // according to the options
+// q : the query keyword to search for
+func download(c *Conf, q string) {
 	// Build the request according to the command line options
-	req, err := buildRequest(URL, c.Query, c.Orientation, c.Size, c.Page, c.Per_page)
+	req, err := buildRequest(URL, q, c.Orientation, c.Size, c.Page, c.Per_page)
 	logerr(err)
 
 	// Send the request
@@ -112,7 +126,7 @@ func download(c *Conf) {
 
 	// Simple closure to build the image title
 	title := func(i int) string {
-		return c.Out_folder + "/" + strings.Join(strings.Split(c.Query, " "), "_") + "_p" + strconv.Itoa(c.Page) + "_" + strconv.Itoa(ids[i]) + ".jpg"
+		return c.Out_folder + "/" + strings.Join(strings.Split(q, " "), "_") + "_p" + strconv.Itoa(c.Page) + "_" + strconv.Itoa(ids[i]) + ".jpg"
 	}
 
 	// Download the photos in parallel
